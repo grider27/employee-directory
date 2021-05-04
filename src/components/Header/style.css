@@ -1,0 +1,10 @@
+.container-fluid-nav {
+    padding: 60px;
+    text-align: center;
+    background:navy;
+    color: white;
+    font-size: 30px;
+    border-bottom-style: solid;
+    border-bottom-color: red;
+    border-bottom-width: 5px;
+}

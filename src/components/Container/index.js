@@ -55,7 +55,10 @@ class Container extends Component {
                     value={this.state.search}
                     handleInputChange={this.handleInputChange}
                 />
-                <Table />
+                <Table 
+                state={this.state}
+                filterEmployees={this.filterEmployees}
+                />
             </div>
         );
     }

@@ -3,13 +3,12 @@ import Search from "../Search";
 import Table from "../Table";
 import API from "../../utils/API";
 
-
 class Container extends Component {
     state = {
         search: "Test",
         employees: [],
         filteredEmployees: [],
-        currentSort: 'default',
+        currentSort: 'asc',
         error: "",
     };
 
@@ -21,7 +20,7 @@ class Container extends Component {
                     filteredEmployees: res.data.results,
                 })
             )
-            .then(() => console.log(this.state.employees))
+            //.then(() => console.log(this.state.employees))
             .catch((err) => {
                 this.setState({ error: err.message });
             });
@@ -47,17 +46,28 @@ class Container extends Component {
     };
 
     onSortChange = () => {
-		const { currentSort } = this.state;
-		let nextSort;
+        const { currentSort } = this.state;
+        //console.log(currentSort);
 
-		if (currentSort === 'down') nextSort = 'up';
-		else if (currentSort === 'up') nextSort = 'default';
-		else if (currentSort === 'default') nextSort = 'down';
+        if (currentSort === "asc") {
+            this.state.filteredEmployees.sort((a, b) =>
+                a.name.first > b.name.first ? 1 : -1
+            );
+            this.setState({
+                currentSort: "dsc"
+            });
+        }
 
-		this.setState({
-			currentSort: nextSort
-		});
-	};
+        if (currentSort === "dsc") {
+            this.state.filteredEmployees.sort((a, b) =>
+                a.name.first < b.name.first ? 1 : -1
+            );
+            this.setState({
+                currentSort: "asc"
+            });
+        }
+        //console.log(currentSort);
+    };
 
 
     render() {
@@ -67,9 +77,10 @@ class Container extends Component {
                     value={this.state.search}
                     handleInputChange={this.handleInputChange}
                 />
-                <Table 
-                state={this.state}
-                filterEmployees={this.filterEmployees}
+                <Table
+                    state={this.state}
+                    filterEmployees={this.filterEmployees}
+                    onSortChange={this.onSortChange}
                 />
             </div>
         );

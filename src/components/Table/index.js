@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import moment from 'moment';
-
+import { FaSort } from 'react-icons/fa';
 
 function Table(props) {
 
@@ -10,7 +10,9 @@ function Table(props) {
             <thead>
                 <tr>
                     <th scope="col">Image</th>
-                    <th scope="col">First Name</th>
+                    <th scope="col">
+                    <span className="th-inner sortable both" onClick={()=> props.onSortChange()}>First Name<FaSort /></span>
+                    </th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Email</th>

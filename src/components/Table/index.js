@@ -4,7 +4,7 @@ import moment from 'moment';
 
 
 function Table(props) {
-    
+
     return (
         <table className="table table-striped">
             <thead>
@@ -30,7 +30,7 @@ function Table(props) {
                             <td>{employee.name.first}</td>
                             <td>{employee.name.last}</td>
                             <td>{employee.phone}</td>
-                            <td>{employee.email}</td>
+                            <td><a href="mailto: {employee.email}">{employee.email}</a></td>
                             <td>{moment(employee.dob.date).format('L')}</td>
                         </tr>
                     );

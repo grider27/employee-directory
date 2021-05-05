@@ -9,7 +9,7 @@ class Container extends Component {
         search: "Test",
         employees: [],
         filteredEmployees: [],
-        sortBy: "asc",
+        currentSort: 'default',
         error: "",
     };
 
@@ -46,6 +46,18 @@ class Container extends Component {
         console.log(this.state.filteredEmployees);
     };
 
+    onSortChange = () => {
+		const { currentSort } = this.state;
+		let nextSort;
+
+		if (currentSort === 'down') nextSort = 'up';
+		else if (currentSort === 'up') nextSort = 'default';
+		else if (currentSort === 'default') nextSort = 'down';
+
+		this.setState({
+			currentSort: nextSort
+		});
+	};
 
 
     render() {
